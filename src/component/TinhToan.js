@@ -10,18 +10,6 @@ export default class TinhToan extends Component {
             result:'',
         }
     }
-    handleClickAdd = () => {
-        this.setState({operator: '+'});
-    }
-    handleClickSub = () => {
-        this.setState({operator: '-'});
-    }
-    handleClickMulti = () => {
-        this.setState({operator: 'x'});
-    }
-    handleClickDiv = () => {
-        this.setState({operator: ':'});
-    }
 
     handleClickEqual = () => {
         const {num1, num2, operator} = this.state;
@@ -46,9 +34,6 @@ export default class TinhToan extends Component {
                 this.setState({result:'Please choose a operator'});
         }
     }
-    handleClickClear = () => {
-        this.setState({num1: '', num2: '', operator: '', result: ''});
-    }
 
     render() {
         const {num1, num2, operator,result} = this.state;
@@ -71,13 +56,23 @@ export default class TinhToan extends Component {
                 <button onClick={this.handleClickEqual}>=</button>
                 <span> {result} </span>
                 <div>
-                    <button onClick={this.handleClickAdd}>+</button>
-                    <button onClick={this.handleClickSub}>-</button>
-                    <button onClick={this.handleClickMulti}>x</button>
-                    <button onClick={this.handleClickDiv}>:</button>
+                    <button onClick={() => {
+                        this.setState({operator: '+'});
+                    }}>+</button>
+                    <button onClick={()=> {
+                        this.setState({operator: '-'});
+                    }}>-</button>
+                    <button onClick={() => {
+                        this.setState({operator: 'x'});
+                    }}>x</button>
+                    <button onClick={() => {
+                        this.setState({operator: ':'});
+                    }}>:</button>
                 </div>
                 <div>
-                    <button onClick={this.handleClickClear}>CLEAR</button>
+                    <button onClick={() => {
+                        this.setState({num1: '', num2: '', operator: '', result: ''});
+                    }}>CLEAR</button>
                 </div>
 
             </>
