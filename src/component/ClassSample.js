@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import {Component} from 'react';
 
 export default class ClassSample extends Component {
 	constructor() {
@@ -11,15 +11,15 @@ export default class ClassSample extends Component {
 	render() {
 		return (
 			<>
-				Demo Class Component
+				<h1 style={{color: "red"}}>./component/ClassSample</h1>
 				<h1>S: {this.state.s}</h1>
 				<button
 					onClick={() => {
 						let newS = this.state.s + 1;
-						this.setState({ s: newS });
+						this.setState({s: newS});
 					}}
 				>
-					S+=1
+					S+=2
 				</button>
 			</>
 		);

@@ -3,15 +3,17 @@ import {Component} from "react";
 export default class HienMang extends Component {
 	constructor() {
 		super();
-		this.state= {
+		this.state = {
 			element: '',
-			arr:[1,2,3],
+			arr: [1, 2, 3],
 		}
 	}
 
 	render() {
 		return (
 			<>
+				<h1 style={{color: "red"}}>./component/HienMang</h1>
+
 				<h1>
 					MẢNG: [{this.state.arr.map(e => (<span>{e}, </span>))}]
 				</h1>
@@ -21,8 +23,9 @@ export default class HienMang extends Component {
 				}}/>
 
 				<button onClick={(e) => {
-					this.setState({element: '', arr: [...this.state.arr, this.state.element], inputArr:''});
-				}}>Add Element</button>
+					this.setState({element: '', arr: [...this.state.arr, this.state.element], inputArr: ''});
+				}}>Add Element
+				</button>
 			</>
 		)
 	}
