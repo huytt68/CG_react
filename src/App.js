@@ -6,12 +6,14 @@ import HienMang from "./component/HienMang";
 import TinhToan from "./component/TinhToan";
 import Product from "./component/Product";
 import TestLifeCycle from "./component/test_life_cycle";
+import PersonList from "./component/PersonList";
 
 function App() {
   return (
     <>
       {/*<ClassSample />*/}
       {/*<HienMang />*/}
+      {/*  <PersonList />*/}
       {/*<TinhToan />*/}
       {/*  <Product />*/}
         <TestLifeCycle />
