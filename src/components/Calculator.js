@@ -39,7 +39,7 @@ export default class Calculator extends Component {
 		const {num1, num2, operator, result} = this.state;
 		return (
 			<>
-				<h1 style={{color: "red"}}>./component/Calculator</h1>
+				<h1 style={{color: "red"}}>./components/Calculator</h1>
 				<input
 					type='number'
 					value={num1}

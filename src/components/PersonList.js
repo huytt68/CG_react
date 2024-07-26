@@ -17,7 +17,7 @@ export default class PersonList extends React.Component {
 	render() {
 		return (
 			<>
-				<h1 style={{color: "red"}}>./component/PersonList</h1>
+				<h1 style={{color: "red"}}>./components/PersonList</h1>
 				<ul>
 					{this.state.persons.map((person) => (
 						<li>

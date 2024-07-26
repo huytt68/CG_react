@@ -1,11 +1,12 @@
 import './App.css';
-import ClassSample from "./component/ClassSample";
-import HienMang from "./component/HienMang";
-import Calculator from "./component/Calculator";
-import Product from "./component/Product";
-import PersonList from "./component/PersonList";
-import Covid from "./component/Covid";
-import {TestFuncComponent} from "./component/TestFuncComponent";
+import ClassSample from "./components/ClassSample";
+import HienMang from "./components/HienMang";
+import Calculator from "./components/Calculator";
+import Product from "./components/Product";
+import PersonList from "./components/PersonList";
+import Covid from "./components/Covid";
+import {TestFuncComponent} from "./components/TestFuncComponent";
+import FProduct from "./components/FProduct";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 			<Product/>
 			<Covid/>
 			<TestFuncComponent/>
+			<FProduct/>
 		</>
 	);
 }

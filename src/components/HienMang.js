@@ -12,7 +12,7 @@ export default class HienMang extends Component {
 	render() {
 		return (
 			<>
-				<h1 style={{color: "red"}}>./component/HienMang</h1>
+				<h1 style={{color: "red"}}>./components/HienMang</h1>
 
 				<h1>
 					MẢNG: [{this.state.arr.map(e => (<span>{e}, </span>))}]

@@ -21,7 +21,7 @@ export default class Product extends Component {
 	render() {
 		return (
 			<>
-				<h1 style={{color: "red"}}>./component/Product</h1>
+				<h1 style={{color: "red"}}>./components/Product</h1>
 				{/*Them san pham*/}
 				<div>Them san pham</div>
 				<input

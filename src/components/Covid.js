@@ -31,7 +31,7 @@ export default class Covid extends Component {
 	render() {
 		return (
 			<>
-				<h1 style={{color: "red"}}>./component/Covid</h1>
+				<h1 style={{color: "red"}}>./components/Covid</h1>
 				<div>Search by name</div>
 				<input
 					value={this.state.inpSearch}
@@ -102,7 +102,7 @@ export default class Covid extends Component {
 					</thead>
 					<tbody>
 					{this.state.noFilter && this.state.provinces
-						.filter((e) => e.name.includes(this.state.inpSearch))
+						.filter((e) => e.name.toLowerCase().includes(this.state.inpSearch.toLowerCase()))
 						.map(e => (
 							<tr>
 								<td>{e.name}</td>
@@ -113,7 +113,7 @@ export default class Covid extends Component {
 						))}
 
 					{!this.state.noFilter && this.state.filterProvinces
-						.filter((e) => e.name.includes(this.state.inpSearch))
+						.filter((e) => e.name.toLowerCase().includes(this.state.inpSearch.toLowerCase()))
 						.map(e => (
 							<tr>
 								<td>{e.name}</td>

@@ -11,7 +11,7 @@ export default class ClassSample extends Component {
 	render() {
 		return (
 			<>
-				<h1 style={{color: "red"}}>./component/ClassSample</h1>
+				<h1 style={{color: "red"}}>./components/ClassSample</h1>
 				<h1>S: {this.state.s}</h1>
 				<button
 					onClick={() => {

@@ -31,7 +31,7 @@ export function TestFuncComponent() {
 
 	return (
 		<>
-			<h1 style={{color: "red"}}>./component/TestFuncComponent</h1>
+			<h1 style={{color: "red"}}>./components/TestFuncComponent</h1>
 			<input
 				type='number'
 				value={num1}
