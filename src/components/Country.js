@@ -5,8 +5,8 @@ const Country = () => {
 	const [countries, setCountries] = useState([]);
 	const [filteredCountries, setFilteredCountries] = useState([]);
 	const [inpSearch, setInpSearch] = useState("");
-	const [areaRange, setAreaRange] = useState({});
-	const [popRange, setPopRange] = useState({});
+	const [areaRange, setAreaRange] = useState({min: '', max: ''});
+	const [popRange, setPopRange] = useState({min: '', max: ''});
 	const [noFilter, setNoFilter] = useState(true);
 	const [alert, setAlert] = useState(false);
 	const [option, setOption] = useState('')
@@ -20,38 +20,44 @@ const Country = () => {
 	const onClickSearchByArea = () => {
 		const {min, max} = areaRange;
 		let filtered = [];
-		if (min !== '' || max !== '') {
-			if (min !== '' && max !== '') {
-				filtered = countries.filter(e => e.area <= max && e.area >= min)
+		if (min === '' && max === '') {
+			setAlert(true);
+		} else {
+			if (min === '' && max !== '') {
+				filtered = countries.filter(e => e.area <= max);
 			} else if (min !== '' && max === '') {
-				filtered = countries.filter(e => e.area >= min)
-			} else if (min === '' && max !== '') {
-				filtered = countries.filter(e => e.area <= max)
+				filtered = countries.filter(e => e.area >= min);
+			} else {
+				filtered = countries.filter(e => e.area <= max && e.area >= min)
 			}
+			console.log(filtered);
+			filtered = filtered.sort((a, b) => a.area - b.area);
+			console.log(filtered);
 			setFilteredCountries(filtered);
 			setNoFilter(false);
 			setAlert(false);
-		} else {
-			setAlert(true);
 		}
 	}
 
 	const onClickSearchByPop = () => {
 		const {min, max} = popRange;
 		let filtered = [];
-		if (min !== '' || max !== '') {
-			if (min !== '' && max !== '') {
-				filtered = countries.filter(e => e.population <= max && e.population >= min)
+		if (min === '' && max === '') {
+			setAlert(true);
+		} else {
+			if (min === '' && max !== '') {
+				filtered = countries.filter(e => e.population <= max);
 			} else if (min !== '' && max === '') {
-				filtered = countries.filter(e => e.population >= min)
-			} else if (min === '' && max !== '') {
-				filtered = countries.filter(e => e.population <= max)
+				filtered = countries.filter(e => e.population >= min);
+			} else {
+				filtered = countries.filter(e => e.population <= max && e.population >= min)
 			}
+			console.log(filtered);
+			filtered = filtered.sort((a, b) => a.population - b.population);
+			console.log(filtered);
 			setFilteredCountries(filtered);
 			setNoFilter(false);
 			setAlert(false);
-		} else {
-			setAlert(true);
 		}
 	}
 
