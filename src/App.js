@@ -8,6 +8,7 @@ import Covid from "./components/Covid";
 import {TestFuncComponent} from "./components/TestFuncComponent";
 import FProduct from "./components/FProduct";
 import Country from "./components/Country";
+import Student from "./components/Student";
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 			{/*<TestFuncComponent/>*/}
 			{/*<FProduct/>*/}
 			<Country/>
+			{/*<Student/>*/}
 		</>
 	);
 }

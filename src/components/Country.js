@@ -9,12 +9,17 @@ const Country = () => {
 	const [popRange, setPopRange] = useState({min: '', max: ''});
 	const [noFilter, setNoFilter] = useState(true);
 	const [alert, setAlert] = useState(false);
-	const [option, setOption] = useState('')
+	const [option, setOption] = useState('');
+	const [showOption, setShowOption] = useState(false);
+	const api = 'https://restcountries.com/v3.1/all?fields=name,area,population,flags'
 
-	useEffect(() => {
-		axios.get(`https://restcountries.com/v3.1/all?fields=name,area,population,flags,capital,region`).then((response) => {
+	const getAll = () => {
+		axios.get(api).then((response) => {
 			setCountries(response.data)
 		})
+	}
+	useEffect(() => {
+		getAll();
 	}, []);
 
 	const onClickSearchByArea = () => {
@@ -30,9 +35,7 @@ const Country = () => {
 			} else {
 				filtered = countries.filter(e => e.area <= max && e.area >= min)
 			}
-			console.log(filtered);
 			filtered = filtered.sort((a, b) => a.area - b.area);
-			console.log(filtered);
 			setFilteredCountries(filtered);
 			setNoFilter(false);
 			setAlert(false);
@@ -52,9 +55,7 @@ const Country = () => {
 			} else {
 				filtered = countries.filter(e => e.population <= max && e.population >= min)
 			}
-			console.log(filtered);
 			filtered = filtered.sort((a, b) => a.population - b.population);
-			console.log(filtered);
 			setFilteredCountries(filtered);
 			setNoFilter(false);
 			setAlert(false);
@@ -66,6 +67,23 @@ const Country = () => {
 		setAreaRange({min: '', max: ''})
 		setPopRange({min: '', max: ''})
 		setAlert(false)
+		setInpSearch('')
+	}
+
+	const onChangeSelect = (e) => {
+		let option = e.target.value;
+		console.log(option);
+		if (option === '') {
+			setShowOption(false);
+			getAll();
+		} else {
+			setOption(option);
+			let newApi = api + ',' + option;
+			axios.get(newApi).then((response) => {
+				setCountries(response.data)
+				setShowOption(true)
+			})
+		}
 	}
 
 	return (
@@ -126,10 +144,12 @@ const Country = () => {
 			{alert && <span style={{color: 'red'}}>'Please enter min / max'</span>}
 			<div>
 				<span style={{color: 'blue'}}>Option:</span>
-				<select onChange={e => setOption(e.target.value)}>
-					<option></option>
-					<option value="1">Capital</option>
-					<option value="2">Region</option>
+				<select
+					value={option}
+					onChange={e => onChangeSelect(e)}>
+					<option value=''>--Option--</option>
+					<option value='capital'>Capital</option>
+					<option value='region'>Region</option>
 				</select>
 			</div>
 
@@ -142,22 +162,20 @@ const Country = () => {
 					<th>Name</th>
 					<th>Area</th>
 					<th>Population</th>
-					{option === '1' && <th>Capital</th>}
-					{option === '2' && <th>Region</th>}
+					{showOption && <th>{option.charAt(0).toUpperCase() + option.slice(1)}</th>}
+
 				</tr>
 				</thead>
 				<tbody>
 				{noFilter && countries.filter(e => e.name.common.toLowerCase().includes(inpSearch.toLowerCase()))
 					.map((e, index) => (
 						<tr key={index}>
-							<td>{index}</td>
+							<td>{index + 1}</td>
 							<td><img height={50} src={e.flags.svg} alt={e.flags.alt}/></td>
 							<td>{e.name.common}</td>
 							<td>{e.area}</td>
 							<td>{e.population}</td>
-							{option === '1' && <td>{e.capital[0]}</td>}
-							{option === '2' && <td>{e.region}</td>}
-
+							{showOption && <td>{e[option]}</td>}
 						</tr>
 					))}
 
@@ -169,8 +187,7 @@ const Country = () => {
 							<td>{e.name.common}</td>
 							<td>{e.area}</td>
 							<td>{e.population}</td>
-							{option === '1' && <td>{e.capital[0]}</td>}
-							{option === '2' && <td>{e.region}</td>}
+							{showOption && <td>{e[option]}</td>}
 						</tr>
 					))}
 				</tbody>
