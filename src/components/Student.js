@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 // Bài tập: Hiện danh sách, tìm kiếm theo tên gần đúng, sắp xếp theo điểm
 
@@ -7,6 +8,7 @@ const Student = () => {
 	const [students, setStudents] = useState([]);
 	const [nameSearch, setNameSearch] = useState("");
 	const api = 'http://localhost:5000/students';
+	const navigate = useNavigate();
 
 	const getAllStudents = async () => {
 		axios.get(api).then(res => {
@@ -38,7 +40,11 @@ const Student = () => {
 
 	return (
 		<>
-			<h1 style={{color: 'red'}}>./Components/Students</h1>
+			<button onClick={() => {
+				navigate('/')
+			}}>Back Home
+			</button>
+			<h1 style={{color: 'red'}}>./components/Students</h1>
 			<h4 style={{color: 'yellow'}}>Run api-students-module-5/app.js before </h4>
 			{/*Search*/}
 			<div>

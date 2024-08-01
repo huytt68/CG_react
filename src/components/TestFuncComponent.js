@@ -1,10 +1,12 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 export function TestFuncComponent() {
 	let [num1, setNum1] = useState('');
 	let [num2, setNum2] = useState('');
 	let [operator, setOperator] = useState('');
 	let [result, setResult] = useState('');
+	const navigate = useNavigate();
 
 	let handleClickEqual = () => {
 		switch (operator) {
@@ -31,6 +33,10 @@ export function TestFuncComponent() {
 
 	return (
 		<>
+			<button onClick={() => {
+				navigate('/')
+			}}>Back Home
+			</button>
 			<h1 style={{color: "red"}}>./components/TestFuncComponent</h1>
 			<input
 				type='number'

@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {Navigate, useNavigate} from "react-router-dom";
 
 const Country = () => {
 	const [countries, setCountries] = useState([]);
@@ -12,6 +13,7 @@ const Country = () => {
 	const [option, setOption] = useState('');
 	const [showOption, setShowOption] = useState(false);
 	const api = 'https://restcountries.com/v3.1/all?fields=name,area,population,flags'
+	const navigate = useNavigate();
 
 	const getAll = () => {
 		axios.get(api).then((response) => {
@@ -75,6 +77,7 @@ const Country = () => {
 		console.log(option);
 		if (option === '') {
 			setShowOption(false);
+			setOption(option);
 			getAll();
 		} else {
 			setOption(option);
@@ -88,6 +91,10 @@ const Country = () => {
 
 	return (
 		<>
+			<button onClick={() => {
+				navigate('/')
+			}}>Back Home
+			</button>
 			<h1 style={{color: 'red'}}>./components/Country</h1>
 			<div>
 				<span style={{color: 'blue'}}>Search by area:</span>
@@ -171,7 +178,7 @@ const Country = () => {
 					.map((e, index) => (
 						<tr key={index}>
 							<td>{index + 1}</td>
-							<td><img height={50} src={e.flags.svg} alt={e.flags.alt}/></td>
+							<td><img width={200} src={e.flags.svg} alt={e.flags.alt}/></td>
 							<td>{e.name.common}</td>
 							<td>{e.area}</td>
 							<td>{e.population}</td>

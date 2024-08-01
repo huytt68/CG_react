@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const FProduct = () => {
 	const [products, setProducts] = useState([
@@ -11,6 +12,7 @@ const FProduct = () => {
 	const [inpName, setInpName] = useState('');
 	const [inpPrice, setInpPrice] = useState('');
 	const [alert, setAlert] = useState(false);
+	const navigate = useNavigate();
 
 	const onClickAddProduct = () => {
 		if (inpID !== '' && inpName !== '' && inpPrice !== '') {
@@ -28,6 +30,10 @@ const FProduct = () => {
 
 	return (
 		<>
+			<button onClick={() => {
+				navigate('/')
+			}}>Back Home
+			</button>
 			<h1 style={{color: 'red'}}>./components/FProduct</h1>
 			<input
 				value={inpSearch}
